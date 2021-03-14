@@ -52,8 +52,8 @@ namespace Business.Concrete
         }
 
         public IResult UserExists(string email)
-        {
-            if (_userService.GetByMail(email) != null)
+        { 
+            if (_userService.GetByMail(email) != null) 
             {
                 return new ErrorResult("Kullanıcı mevcut");
             }

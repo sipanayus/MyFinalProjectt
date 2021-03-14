@@ -34,19 +34,20 @@ namespace Business.Concrete
         {
 
             //iş kodları
-            IResult result= BusinessRules.Run(CheckIfProductNameExists(product.ProductName), 
-                CheckIfProductCountOfCategoryCorrect(product.CategoryId),CheckIfCategoryLimitExceded());
+            IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName),
+                CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfCategoryLimitExceded());
             if (result != null)
             {
                 return result;
             }
-           
-             _productDal.Add(product);
 
-              return new SuccessResult(Messages.ProductAdded);
-                
+            _productDal.Add(product);
+
+            return new SuccessResult(Messages.ProductAdded);
+
         }
 
+        [CacheAspect] //key value
         public IDataResult<List<Product>> GetAll()
         {
             if (DateTime.Now.Hour == 17)
